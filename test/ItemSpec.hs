@@ -2,9 +2,8 @@ module ItemSpec (spec) where
 
 import Test.Hspec
 import Generic
-import Data.Functor.Identity (runIdentity)
-import Parser (Parser, item, parse)
 import ParserInput (ParserState(..), Position(..))
+import Parser (item)
 
 spec :: Spec
 spec = describe "Test Item Parser Combinator" $
@@ -16,6 +15,16 @@ testCases = [
     TestCase {
         testInput   = "hello",
         expected    = Right ('h', ParserState "ello" (Position 2 1)),
-        description = "Test wether the parser correctly consumes a single character and increments the column position accordingly"
+        description = "Test whether the parser correctly consumes a single character and increments the column position accordingly"
+      },
+    TestCase {
+        testInput   = "\n",
+        expected    = Right ('\n', ParserState "" (Position 1 2)),
+        description = "Test whether item correctly consumes the newline character and increments the line position accordingly"
+      },
+    TestCase {
+        testInput   = "",
+        expected    = Left "Unexpected EOF",
+        description = "Test whether item correctly reports unexpected end of file"
       }
   ]

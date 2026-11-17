@@ -9,7 +9,7 @@ class ParserError e where
 
 instance ParserError String where
   unexpectedEOF :: String
-  unexpectedEOF = "UnexpectedEOF"
+  unexpectedEOF = "Unexpected EOF"
 
   satisfyError :: String -> String
   satisfyError = ("Could not satisfy predicate on: " ++)
