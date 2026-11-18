@@ -9,13 +9,17 @@ module Parser
   , item
   , satisfy
   , throwError
+  , getPosition
   ) where
 
 import Parsable (Parsable(..))
 import ParserError (ParserError (..))
-import ParserInput (ParserState(..), Positioned (advancePos), parserState)
+import ParserInput (ParserState(..), Positioned (advancePos), parserState, Position)
 import Data.Kind (Type)
 import Data.Functor.Identity (Identity)
+import Control.Applicative (Alternative(..))
+
+import TypeClasses.IsDigit (IsDigit(isDigit))
 
 newtype ParserT s e (m :: Type -> Type) a
   = ParserT { runParser :: ParserState s -> m (Either e (a, ParserState s)) }
@@ -41,11 +45,38 @@ instance Monad f => Monad (ParserT s e f) where
                 Right (x, s') -> runParser (f x) s'
                 Left err      -> pure $ Left err
 
+instance (Monad f, Monoid e) => Alternative (ParserT s e f) where
+  empty :: ParserT s e f a
+  empty = ParserT $ \_ -> pure $ Left mempty
+
+  (<|>) :: ParserT s e f a -> ParserT s e f a -> ParserT s e f a
+  px <|> py = ParserT $ \inp -> do
+    rx <- runParser px inp
+    case rx of
+      Right x  -> pure (Right x)
+      Left err -> do
+        ry <- runParser py inp
+        case ry of
+          Right y  -> pure (Right y)
+          Left err' -> pure $ Left $ err <> err'
+
 throwError
-  :: (ParserError e, Applicative f)
+  :: (Applicative f)
   => e
-  -> ParserT s e f (Elem s)
+  -> ParserT s e f a
 throwError err = ParserT $  \_ -> pure $ Left err
+
+getPosition
+  :: (Applicative f)
+  => ParserT s e f Position
+getPosition = ParserT $ \(ParserState st p)
+                -> pure $ Right (p, ParserState st p)
+
+parse
+  :: ParserT s e m a
+  -> s
+  -> m (Either e (a, ParserState s))
+parse p inp = runParser p (parserState inp)
 
 item
   :: (Parsable s,
@@ -76,8 +107,12 @@ satisfy f = do
      then pure x
      else throwError $ satisfyError (show x)
 
-parse
-  :: ParserT s e m a
-  -> s
-  -> m (Either e (a, ParserState s))
-parse p inp = runParser p (parserState inp)
+digit
+  :: (Parsable s,
+      ParserError e,
+      Positioned (Elem s),
+      Monad m,
+      Show (Elem s),
+      IsDigit (Elem s)
+   ) => ParserT s e m (Elem s)
+digit = satisfy isDigit

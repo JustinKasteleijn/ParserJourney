@@ -64,6 +64,8 @@ library
                       ParserError,
                       ParserInput,
 
+                      TypeClasses.IsDigit
+
     -- Modules included in this library but not exported.
     -- other-modules:
 
@@ -89,6 +91,7 @@ test-suite ParserJourney-test
     -- Modules included in this executable, other than Main.
     other-modules: Generic
                    ItemSpec
+                   GetPositionSpec
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
