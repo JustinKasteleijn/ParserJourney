@@ -1,10 +1,10 @@
 module GetPositionSpec (spec) where
 
-import Test.Hspec
-import Generic
-import ParserInput (ParserState(..), Position(..))
-import Parser (item, getPosition)
-import Control.Applicative (many)
+import           Control.Applicative (many)
+import           Generic
+import           Parser              (getPosition, item)
+import           ParserInput         (ParserState (..), Position (..))
+import           Test.Hspec
 
 spec :: Spec
 spec = describe "Test getPosition returns right position" $

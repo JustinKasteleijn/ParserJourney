@@ -1,13 +1,13 @@
 module DigitSpec (spec) where
 
-import Test.Hspec
-import Generic
-import ParserInput (ParserState(..), Position(..))
-import Parser (digit)
-import ParserError
+import           Generic
+import           Parser      (digit)
+import           ParserError
+import           ParserInput (ParserState (..), Position (..))
+import           Test.Hspec
 
 spec :: Spec
-spec = describe "Test Item Parser Combinator" $
+spec = describe "Test Digit Parser Combinator" $
          runTestCases digit testCases
 
 

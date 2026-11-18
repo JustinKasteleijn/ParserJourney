@@ -8,6 +8,8 @@ module Parser
   , parse
   , item
   , digit
+  , digit1
+  , digit0
   , satisfy
   , throwError
   , getPosition
@@ -131,3 +133,25 @@ digit
       IsDigit (Elem s)
    ) => ParserT s e m (Elem s)
 digit = satisfy isDigit <?> "digit"
+
+digit0
+ :: (Parsable s,
+     ParserError e,
+     Monoid e,
+     Positioned (Elem s),
+     Monad m,
+     Show (Elem s),
+     IsDigit (Elem s)
+ ) => ParserT s e m [Elem s]
+digit0 = many digit
+
+digit1
+ :: (Parsable s,
+     ParserError e,
+     Monoid e,
+     Positioned (Elem s),
+     Monad m,
+     Show (Elem s),
+     IsDigit (Elem s)
+ ) => ParserT s e m [Elem s]
+digit1 = some digit

@@ -1,5 +1,5 @@
-{-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE InstanceSigs #-}
+{-# LANGUAGE TypeFamilies #-}
 
 module Parsable where
 

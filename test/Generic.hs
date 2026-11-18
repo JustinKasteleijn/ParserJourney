@@ -2,11 +2,11 @@
 
 module Generic where
 
-import Test.Hspec
-import Control.Monad (forM_)
-import Parser (parse, Parser)
-import Data.Functor.Identity (Identity(runIdentity))
-import ParserInput (ParserState)
+import           Control.Monad         (forM_)
+import           Data.Functor.Identity (Identity (runIdentity))
+import           Parser                (Parser, parse)
+import           ParserInput           (ParserState)
+import           Test.Hspec
 
 data TestCase s a = TestCase {
     description :: String,

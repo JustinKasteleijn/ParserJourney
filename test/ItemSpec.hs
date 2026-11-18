@@ -1,9 +1,9 @@
 module ItemSpec (spec) where
 
-import Test.Hspec
-import Generic
-import ParserInput (ParserState(..), Position(..))
-import Parser (item)
+import           Generic
+import           Parser      (item)
+import           ParserInput (ParserState (..), Position (..))
+import           Test.Hspec
 
 spec :: Spec
 spec = describe "Test Item Parser Combinator" $

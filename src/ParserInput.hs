@@ -1,5 +1,5 @@
-{-# LANGUAGE InstanceSigs           #-}
-{-# LANGUAGE FlexibleInstances      #-}
+{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE InstanceSigs      #-}
 
 module ParserInput where
 
