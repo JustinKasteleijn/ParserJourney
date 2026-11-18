@@ -19,7 +19,7 @@ testCases = [
       },
     TestCase {
         testInput   = "a2",
-        expected    = Left $ "Could not satisfy predicate on: 'a'",
+        expected    = Left "Unexpected input: 'a'",
         description = "Test if satisfy correctly fails if the predicate is False"
       }
   ]

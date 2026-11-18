@@ -11,6 +11,7 @@ module Parser
   , satisfy
   , throwError
   , getPosition
+  , (<?>)
   ) where
 
 import Parsable (Parsable(..))
@@ -79,6 +80,19 @@ parse
   -> m (Either e (a, ParserState s))
 parse p inp = runParser p (parserState inp)
 
+infixr 0 <?>
+(<?>)
+  :: (ParserError e,
+      Monad m)
+  => ParserT s e m a
+  -> String
+  -> ParserT s e m a
+p <?> label = ParserT $ \inp -> do
+                 res <- runParser p inp
+                 case res of
+                   Left err -> pure $ Left $ addLabel label err
+                   Right x  -> pure $ Right x
+
 item
   :: (Parsable s,
       ParserError e,
@@ -106,7 +120,7 @@ satisfy f = do
   x <- item
   if f x
      then pure x
-     else throwError $ satisfyError (show x)
+     else throwError $ unexpectedInput (show x)
 
 digit
   :: (Parsable s,
@@ -116,4 +130,4 @@ digit
       Show (Elem s),
       IsDigit (Elem s)
    ) => ParserT s e m (Elem s)
-digit = satisfy isDigit
+digit = satisfy isDigit <?> "digit"

@@ -92,6 +92,7 @@ test-suite ParserJourney-test
     other-modules: Generic
                    ItemSpec
                    GetPositionSpec
+                   DigitSpec
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
