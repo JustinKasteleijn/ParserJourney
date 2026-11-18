@@ -4,7 +4,6 @@ import Test.Hspec
 import Generic
 import ParserInput (ParserState(..), Position(..))
 import Parser (digit0)
-import ParserError
 
 spec :: Spec
 spec = describe "Test Digit1 Parser Combinator" $
@@ -24,8 +23,13 @@ testCases = [
         description = "Test whether digit0 correctly accepts EOF"
       },
     TestCase {
-       testInput   = "123a123",
-       expected    = Right ("123", ParserState "a123" (Position 4 1)),
-       description = "Test whether digit correctly rejects non digit characters and returns input after digits"
+        testInput   = "aaa",
+        expected    = Right ("", ParserState "aaa" (Position 1 1)),
+        description = "Test whether digit0 correctly ignores non digit characters"
+      },
+    TestCase {
+        testInput   = "123a123",
+        expected    = Right ("123", ParserState "a123" (Position 4 1)),
+        description = "Test whether digit correctly rejects non digit characters and returns input after digits"
      }
   ]
