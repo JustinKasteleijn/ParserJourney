@@ -19,7 +19,7 @@ class Positioned a where
 instance Positioned Char where
   advancePos :: Position -> Char -> Position
   advancePos (Position c l) n
-    | isNewline n = Position c (l + 1)
+    | isNewline n = Position 1 (l + 1)
     | otherwise   = Position (c + 1) l
 
   isNewline :: Char -> Bool

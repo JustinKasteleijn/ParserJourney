@@ -7,6 +7,7 @@ module Parser
   , Parser
   , parse
   , item
+  , digit
   , satisfy
   , throwError
   , getPosition
