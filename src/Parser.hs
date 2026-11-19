@@ -1,6 +1,6 @@
+{-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE InstanceSigs     #-}
 {-# LANGUAGE KindSignatures   #-}
-{-# LANGUAGE FlexibleContexts #-}
 
 module Parser
   ( ParserT
@@ -10,20 +10,25 @@ module Parser
   , digit
   , digit1
   , digit0
+  , alpha
+  , alpha1
+  , alpha0
   , satisfy
   , throwError
   , getPosition
   , (<?>)
   ) where
 
-import Parsable (Parsable(..))
-import ParserError (ParserError (..))
-import ParserInput (ParserState(..), Positioned (advancePos), parserState, Position)
-import Data.Kind (Type)
-import Data.Functor.Identity (Identity)
-import Control.Applicative (Alternative(..))
+import           Control.Applicative   (Alternative (..))
+import           Data.Functor.Identity (Identity)
+import           Data.Kind             (Type)
+import           Parsable              (Parsable (..))
+import           ParserError           (ParserError (..))
+import           ParserInput           (ParserState (..), Position,
+                                        Positioned (advancePos), parserState)
 
-import TypeClasses.IsDigit (IsDigit(isDigit))
+import           TypeClasses.IsAlpha   (IsAlpha (isAlpha))
+import           TypeClasses.IsDigit   (IsDigit (isDigit))
 
 newtype ParserT s e (m :: Type -> Type) a
   = ParserT { runParser :: ParserState s -> m (Either e (a, ParserState s)) }
@@ -32,7 +37,11 @@ type Parser s a = ParserT s String Identity a
 
 instance (Monad f) => Functor (ParserT s e f) where
   fmap :: (a -> b) -> ParserT s e f a -> ParserT s e f b
-  fmap f p = pure f <*> p
+  fmap f p = ParserT $ \s -> do
+                 res <- runParser p s
+                 case res of
+                   Right (x, ps) -> pure $ Right (f x, ps)
+                   Left err      -> pure $ Left err
 
 instance (Monad f) => Applicative (ParserT s e f) where
   pure :: a -> ParserT s e f a
@@ -61,7 +70,7 @@ instance (Monad f, Monoid e) => Alternative (ParserT s e f) where
       Left err -> do
         ry <- runParser py inp
         case ry of
-          Right y  -> pure (Right y)
+          Right y   -> pure (Right y)
           Left err' -> pure $ Left $ err <> err'
 
 throwError
@@ -155,3 +164,36 @@ digit1
      IsDigit (Elem s)
  ) => ParserT s e m [Elem s]
 digit1 = some digit
+
+alpha
+  :: (Parsable s,
+      ParserError e,
+      Monoid e,
+      Positioned (Elem s),
+      Monad m,
+      Show (Elem s),
+      IsAlpha (Elem s)
+  ) => ParserT s e m (Elem s)
+alpha = satisfy isAlpha
+
+alpha0
+  :: (Parsable s,
+      ParserError e,
+      Monoid e,
+      Positioned (Elem s),
+      Monad m,
+      Show (Elem s),
+      IsAlpha (Elem s)
+  ) => ParserT s e m [Elem s]
+alpha0 = many alpha
+
+alpha1
+  :: (Parsable s,
+      ParserError e,
+      Monoid e,
+      Positioned (Elem s),
+      Monad m,
+      Show (Elem s),
+      IsAlpha (Elem s)
+  ) => ParserT s e m [Elem s]
+alpha1 = some alpha
