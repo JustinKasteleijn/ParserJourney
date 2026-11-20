@@ -7,12 +7,6 @@ module Parser
   , Parser
   , parse
   , item
-  , digit
-  , digit1
-  , digit0
-  , alpha
-  , alpha1
-  , alpha0
   , satisfy
   , throwError
   , getPosition
@@ -132,68 +126,3 @@ satisfy f = do
   if f x
      then pure x
      else throwError $ unexpectedInput (show x)
-
-digit
-  :: (Parsable s,
-      ParserError e,
-      Positioned (Elem s),
-      Monad m,
-      Show (Elem s),
-      IsDigit (Elem s)
-   ) => ParserT s e m (Elem s)
-digit = satisfy isDigit <?> "digit"
-
-digit0
- :: (Parsable s,
-     ParserError e,
-     Monoid e,
-     Positioned (Elem s),
-     Monad m,
-     Show (Elem s),
-     IsDigit (Elem s)
- ) => ParserT s e m [Elem s]
-digit0 = many digit
-
-digit1
- :: (Parsable s,
-     ParserError e,
-     Monoid e,
-     Positioned (Elem s),
-     Monad m,
-     Show (Elem s),
-     IsDigit (Elem s)
- ) => ParserT s e m [Elem s]
-digit1 = some digit
-
-alpha
-  :: (Parsable s,
-      ParserError e,
-      Monoid e,
-      Positioned (Elem s),
-      Monad m,
-      Show (Elem s),
-      IsAlpha (Elem s)
-  ) => ParserT s e m (Elem s)
-alpha = satisfy isAlpha
-
-alpha0
-  :: (Parsable s,
-      ParserError e,
-      Monoid e,
-      Positioned (Elem s),
-      Monad m,
-      Show (Elem s),
-      IsAlpha (Elem s)
-  ) => ParserT s e m [Elem s]
-alpha0 = many alpha
-
-alpha1
-  :: (Parsable s,
-      ParserError e,
-      Monoid e,
-      Positioned (Elem s),
-      Monad m,
-      Show (Elem s),
-      IsAlpha (Elem s)
-  ) => ParserT s e m [Elem s]
-alpha1 = some alpha

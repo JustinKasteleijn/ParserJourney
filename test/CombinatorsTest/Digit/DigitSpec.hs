@@ -1,9 +1,9 @@
-module DigitSpec (spec) where
+module CombinatorsTest.Digit.DigitSpec (spec) where
 
+import           Combinators.Digit
 import           Generic
-import           Parser      (digit)
 import           ParserError
-import           ParserInput (ParserState (..), Position (..))
+import           ParserInput       (ParserState (..), Position (..))
 import           Test.Hspec
 
 spec :: Spec

@@ -1,10 +1,10 @@
-module Digit1Spec (spec) where
+module CombinatorsTest.Digit.Digit1Spec (spec) where
 
-import Test.Hspec
-import Generic
-import ParserInput (ParserState(..), Position(..))
-import Parser (digit1)
-import ParserError
+import           Combinators.Digit
+import           Generic
+import           ParserError
+import           ParserInput       (ParserState (..), Position (..))
+import           Test.Hspec
 
 spec :: Spec
 spec = describe "Test Digit1 Parser Combinator" $
@@ -26,6 +26,6 @@ testCases = [
       TestCase {
         testInput   = "123a123",
         expected    = Right ("123", ParserState "a123" (Position 4 1)),
-        description = "Test whether digit1 correctly rejects non digit characters and returns input after digits"
+        description = "Test whether digit1 correctly rejects non digit characters and returns input after non digits"
       }
   ]

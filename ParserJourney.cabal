@@ -64,8 +64,12 @@ library
                       ParserError,
                       ParserInput,
 
+                      Combinators.Alpha,
+                      Combinators.Digit,
+                      Combinators.BasicCombinators,
+
                       TypeClasses.IsDigit,
-                      TypeClasses.IsAlpha
+                      TypeClasses.IsAlpha,
 
     -- Modules included in this library but not exported.
     -- other-modules:
@@ -94,9 +98,13 @@ test-suite ParserJourney-test
                    ItemSpec,
                    GetPositionSpec,
 
-                   DigitSpec,
-                   Digit1Spec,
-                   Digit0Spec
+                   CombinatorsTest.Digit.DigitSpec,
+                   CombinatorsTest.Digit.Digit1Spec,
+                   CombinatorsTest.Digit.Digit0Spec,
+
+                   CombinatorsTest.Alpha.Alpha0Spec,
+                   CombinatorsTest.Alpha.Alpha1Spec,
+                   CombinatorsTest.Alpha.AlphaSpec,
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
