@@ -23,8 +23,7 @@ instance Positioned Char where
     | otherwise   = Position (c + 1) l
 
   isNewline :: Char -> Bool
-  isNewline '\n' = True
-  isNewline _    = False
+  isNewline c = c == '\n' || c == '\r'
 
 data ParserState s = ParserState {
     input :: s,

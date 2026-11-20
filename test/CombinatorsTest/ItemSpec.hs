@@ -1,4 +1,4 @@
-module ItemSpec (spec) where
+module CombinatorsTest.ItemSpec (spec) where
 
 import           Generic
 import           ParserJourney.Combinators.BasicCombinators

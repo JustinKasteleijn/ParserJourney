@@ -3,11 +3,12 @@
 module ParserJourney.Combinators.CharCombinators where
 
 import           Control.Applicative                        (Alternative (many, some))
+import           Control.Monad                              (void)
 import           ParserJourney.Combinators.BasicCombinators (satisfy, (<?>))
 import           ParserJourney.Parsable                     (Parsable (Elem))
 import           ParserJourney.Parser                       (ParserT)
 import           ParserJourney.ParserError                  (ParserError)
-import           ParserJourney.ParserInput                  (Positioned)
+import           ParserJourney.ParserInput                  (Positioned (isNewline))
 import           ParserJourney.TypeClasses.IsAlpha          (IsAlpha (isAlpha))
 import           ParserJourney.TypeClasses.IsDigit          (IsDigit (isDigit))
 
@@ -75,3 +76,13 @@ digit1
      IsDigit (Elem s)
  ) => ParserT s e m [Elem s]
 digit1 = some digit
+
+newline
+  :: (Parsable s,
+      ParserError e,
+      Monoid e,
+      Positioned (Elem s),
+      Monad m,
+      Show (Elem s)
+  ) => ParserT s e m ()
+newline = void $ satisfy isNewline <?> "newline"

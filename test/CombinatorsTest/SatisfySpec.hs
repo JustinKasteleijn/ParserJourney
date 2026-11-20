@@ -1,4 +1,4 @@
-module SatisfySpec (spec) where
+module CombinatorsTest.SatisfySpec (spec) where
 
 import Test.Hspec
 import Generic
