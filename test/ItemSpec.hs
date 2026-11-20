@@ -1,8 +1,9 @@
 module ItemSpec (spec) where
 
 import           Generic
-import           Parser      (item)
-import           ParserInput (ParserState (..), Position (..))
+import           ParserJourney.Combinators.BasicCombinators
+import           ParserJourney.ParserInput                  (ParserState (..),
+                                                             Position (..))
 import           Test.Hspec
 
 spec :: Spec

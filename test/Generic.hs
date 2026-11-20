@@ -2,10 +2,10 @@
 
 module Generic where
 
-import           Control.Monad         (forM_)
-import           Data.Functor.Identity (Identity (runIdentity))
-import           Parser                (Parser, parse)
-import           ParserInput           (ParserState)
+import           Control.Monad             (forM_)
+import           Data.Functor.Identity     (Identity (runIdentity))
+import           ParserJourney.Parser      (Parser, parse)
+import           ParserJourney.ParserInput (ParserState)
 import           Test.Hspec
 
 data TestCase s a = TestCase {

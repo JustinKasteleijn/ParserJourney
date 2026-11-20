@@ -59,17 +59,17 @@ library
     import:           warnings
 
     -- Modules exported by the library.
-    exposed-modules:  Parser,
-                      Parsable,
-                      ParserError,
-                      ParserInput,
+    exposed-modules:  ParserJourney.Parser,
+                      ParserJourney.Combinators,
+                      ParserJourney.Parsable,
+                      ParserJourney.ParserError,
+                      ParserJourney.ParserInput,
 
-                      Combinators.Alpha,
-                      Combinators.Digit,
-                      Combinators.BasicCombinators,
+                      ParserJourney.Combinators.CharCombinators,
+                      ParserJourney.Combinators.BasicCombinators,
 
-                      TypeClasses.IsDigit,
-                      TypeClasses.IsAlpha,
+                      ParserJourney.TypeClasses.IsDigit,
+                      ParserJourney.TypeClasses.IsAlpha,
 
     -- Modules included in this library but not exported.
     -- other-modules:

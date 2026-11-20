@@ -1,6 +1,6 @@
 {-# LANGUAGE InstanceSigs #-}
 
-module TypeClasses.IsDigit where
+module ParserJourney.TypeClasses.IsDigit where
 
 import qualified Data.Char
 

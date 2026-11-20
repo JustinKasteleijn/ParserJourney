@@ -1,9 +1,11 @@
 module GetPositionSpec (spec) where
 
-import           Control.Applicative (many)
+import           Control.Applicative                        (many)
 import           Generic
-import           Parser              (getPosition, item)
-import           ParserInput         (ParserState (..), Position (..))
+import           ParserJourney.Combinators.BasicCombinators
+import           ParserJourney.Parser                       (getPosition)
+import           ParserJourney.ParserInput                  (ParserState (..),
+                                                             Position (..))
 import           Test.Hspec
 
 spec :: Spec

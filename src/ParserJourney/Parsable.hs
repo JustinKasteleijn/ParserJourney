@@ -1,7 +1,7 @@
 {-# LANGUAGE InstanceSigs #-}
 {-# LANGUAGE TypeFamilies #-}
 
-module Parsable where
+module ParserJourney.Parsable where
 
 class Parsable s where
   type Elem s

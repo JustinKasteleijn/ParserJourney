@@ -2,27 +2,20 @@
 {-# LANGUAGE InstanceSigs     #-}
 {-# LANGUAGE KindSignatures   #-}
 
-module Parser
-  ( ParserT
+module ParserJourney.Parser
+  ( ParserT(ParserT)
+  , runParser
   , Parser
   , parse
-  , item
-  , satisfy
   , throwError
   , getPosition
-  , (<?>)
   ) where
 
-import           Control.Applicative   (Alternative (..))
-import           Data.Functor.Identity (Identity)
-import           Data.Kind             (Type)
-import           Parsable              (Parsable (..))
-import           ParserError           (ParserError (..))
-import           ParserInput           (ParserState (..), Position,
-                                        Positioned (advancePos), parserState)
-
-import           TypeClasses.IsAlpha   (IsAlpha (isAlpha))
-import           TypeClasses.IsDigit   (IsDigit (isDigit))
+import           Control.Applicative       (Alternative (..))
+import           Data.Functor.Identity     (Identity)
+import           Data.Kind                 (Type)
+import           ParserJourney.ParserInput (ParserState (..), Position,
+                                            parserState)
 
 newtype ParserT s e (m :: Type -> Type) a
   = ParserT { runParser :: ParserState s -> m (Either e (a, ParserState s)) }
@@ -84,45 +77,3 @@ parse
   -> s
   -> m (Either e (a, ParserState s))
 parse p inp = runParser p (parserState inp)
-
-infixr 0 <?>
-(<?>)
-  :: (ParserError e,
-      Monad m)
-  => ParserT s e m a
-  -> String
-  -> ParserT s e m a
-p <?> label = ParserT $ \inp -> do
-                 res <- runParser p inp
-                 case res of
-                   Left err -> pure $ Left $ addLabel label err
-                   Right x  -> pure $ Right x
-
-item
-  :: (Parsable s,
-      ParserError e,
-      Positioned (Elem s),
-      Applicative f
-     )
-  => ParserT s e f (Elem s)
-item = ParserT $ \(ParserState s p)
-  -> case uncons s of
-       Nothing      -> pure $ Left unexpectedEOF
-       Just (x, s') ->
-         let pos' = advancePos p x
-          in pure $ Right (x, ParserState s' pos')
-
-satisfy
-  :: (Parsable s,
-      ParserError e,
-      Positioned (Elem s),
-      Monad m,
-      Show (Elem s)
-     )
-  => (Elem s -> Bool)
-  -> ParserT s e m (Elem s)
-satisfy f = do
-  x <- item
-  if f x
-     then pure x
-     else throwError $ unexpectedInput (show x)

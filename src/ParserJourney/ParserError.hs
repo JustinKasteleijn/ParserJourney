@@ -1,7 +1,7 @@
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE InstanceSigs      #-}
 
-module ParserError where
+module ParserJourney.ParserError where
 
 class ParserError e where
   unexpectedEOF :: e

@@ -1,7 +1,7 @@
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE InstanceSigs      #-}
 
-module ParserInput where
+module ParserJourney.ParserInput where
 
 data Position = Position {
     col  :: Int,

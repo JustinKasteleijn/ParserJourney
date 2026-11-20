@@ -1,9 +1,10 @@
 module CombinatorsTest.Digit.Digit1Spec (spec) where
 
-import           Combinators.Digit
 import           Generic
-import           ParserError
-import           ParserInput       (ParserState (..), Position (..))
+import           ParserJourney.Combinators.CharCombinators
+import           ParserJourney.ParserError
+import           ParserJourney.ParserInput                 (ParserState (..),
+                                                            Position (..))
 import           Test.Hspec
 
 spec :: Spec

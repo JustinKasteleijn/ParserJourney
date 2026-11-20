@@ -1,6 +1,6 @@
 {-# LANGUAGE InstanceSigs #-}
 
-module TypeClasses.IsAlpha where
+module ParserJourney.TypeClasses.IsAlpha where
 
 import qualified Data.Char
 

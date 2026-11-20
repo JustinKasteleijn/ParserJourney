@@ -3,8 +3,8 @@ module SatisfySpec (spec) where
 import Test.Hspec
 import Generic
 import Data.Char (isDigit)
-import ParserInput (ParserState(..), Position(..))
-import Parser (satisfy)
+import ParserJourney.ParserInput (ParserState(..), Position(..))
+import ParserJourney.Combinators.BasicCombinators
 
 spec :: Spec
 spec = describe "Test Satisfy Parser Combinator" $
