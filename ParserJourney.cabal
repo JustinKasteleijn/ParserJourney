@@ -101,6 +101,7 @@ test-suite ParserJourney-test
                    CombinatorsTest.SatisfySpec,
 
                    CombinatorsTest.NewlineSpec,
+                   CombinatorsTest.TokenSpec,
 
                    CombinatorsTest.Digit.DigitSpec,
                    CombinatorsTest.Digit.Digit1Spec,

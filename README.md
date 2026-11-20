@@ -23,7 +23,8 @@ Just me developing my own parser library as preparation for Advent of Code :)
 | Combinator | Implemented | Tested |
 |---|:---:|:---:|
 | `anyChar` | [ ] | [ ] |
-| `char` | [ ] | [ ] |
+| `char` | [x] | [x] |
+| `token` | [x] | [x] |
 | `oneOf` | [ ] | [ ] |
 | `noneOf` | [ ] | [ ] |
 | `digit` | [x] | [x] |
@@ -43,7 +44,9 @@ Just me developing my own parser library as preparation for Advent of Code :)
 | `lower1` | [ ] | [ ] |
 | `space` | [ ] | [ ] |
 | `spaces` | [ ] | [ ] |
-| `newline` | [ ] | [ ] |
+| `newline` | [x] | [x] |
+| `string` | [x] | [x] | 
+| `tokens` | [x] | [x] |
 | `tab` | [ ] | [ ] |
 | `horizontalSpace` | [ ] | [ ] |
 
