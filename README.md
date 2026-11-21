@@ -45,16 +45,15 @@ Just me developing my own parser library as preparation for Advent of Code :)
 | `space` | [ ] | [ ] |
 | `spaces` | [ ] | [ ] |
 | `newline` | [x] | [x] |
-| `string` | [x] | [x] | 
-| `tokens` | [x] | [x] |
 | `tab` | [ ] | [ ] |
 | `horizontalSpace` | [ ] | [ ] |
 
-## StringCombinators
+## SequenceCombinators
 
 | Combinator | Implemented | Tested |
 |---|:---:|:---:|
-| `string` | [ ] | [ ] |
+| `string` | [x] | [x] |
+| `tokens` | [x] | [x] | 
 | `takeWhile` | [ ] | [ ] |
 | `takeWhile1` | [ ] | [ ] |
 | `takeTill` | [ ] | [ ] |

@@ -100,18 +100,6 @@ token
     -> ParserT s e m (Elem s)
 token c = satisfy (== c) <?> show c
 
-tokens
-  :: (Parsable s,
-      ParserError e,
-      Monoid e,
-      Eq (Elem s),
-      Positioned (Elem s),
-      Monad m,
-      Show (Elem s)
-  ) => [Elem s]
-    -> ParserT s e m [Elem s]
-tokens = mapM token
-
 char
   :: (Parsable s,
       ParserError e,
@@ -123,15 +111,3 @@ char
   ) => Elem s
   -> ParserT s e m (Elem s)
 char = token
-
-string
-  :: (Parsable s,
-      ParserError e,
-      Monoid e,
-      Elem s ~ Char,
-      Positioned (Elem s),
-      Monad m,
-      Show (Elem s)
-  ) => String
-    -> ParserT s e m [Elem s]
-string = mapM char
