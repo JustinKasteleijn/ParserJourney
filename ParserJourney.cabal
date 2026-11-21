@@ -69,6 +69,7 @@ library
                       ParserJourney.Combinators.BasicCombinators,
                       ParserJourney.Combinators.SequenceCombinators,
                       ParserJourney.Combinators.SeparationCombinators,
+                      ParserJourney.Combinators.LookAheadCombinators,
 
                       ParserJourney.TypeClasses.IsDigit,
                       ParserJourney.TypeClasses.IsAlpha,
