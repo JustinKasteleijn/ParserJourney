@@ -12,7 +12,7 @@ Just me developing my own parser library as preparation for Advent of Code :)
 |---|:---:|:---:|
 | `item` | [x] | [x] |
 | `satisfy` | [x] | [x] |
-| `eof` | [ ] | [ ] |
+| `eof` | [x] | [x] |
 | `choice` | [ ] | [ ] |
 | `optional` | [ ] | [ ] |
 | `unexpected` | [ ] | [ ] |
@@ -109,7 +109,7 @@ Just me developing my own parser library as preparation for Advent of Code :)
 |---|:---:|:---:|
 | `try` | [ ] | [ ] |
 | `lookAhead` | [ ] | [ ] |
-| `notFollowedBy` | [ ] | [ ] |
+| `notFollowedBy` | [x] | [x] |
 
 ## ExpressionCombinators
 

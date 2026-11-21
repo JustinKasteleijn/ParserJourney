@@ -3,14 +3,17 @@
 module ParserJourney.Combinators.BasicCombinators (
     (<?>),
     item,
-    satisfy
+    satisfy,
+    eof
 ) where
 
-import           ParserJourney.Parsable    (Parsable (Elem, uncons))
-import           ParserJourney.Parser      (ParserT (..), throwError)
-import           ParserJourney.ParserError (ParserError (addLabel, unexpectedEOF, unexpectedInput))
-import           ParserJourney.ParserInput (ParserState (ParserState),
-                                            Positioned (advancePos))
+import           ParserJourney.Combinators.LookAheadCombinators (notFollowedBy)
+import           ParserJourney.Parsable                         (Parsable (Elem, uncons))
+import           ParserJourney.Parser                           (ParserT (..),
+                                                                 throwError)
+import           ParserJourney.ParserError                      (ParserError (addLabel, unexpectedEOF, unexpectedInput))
+import           ParserJourney.ParserInput                      (ParserState (ParserState),
+                                                                 Positioned (advancePos))
 
 infixr 0 <?>
 (<?>)
@@ -53,3 +56,13 @@ satisfy f = do
   if f x
      then pure x
      else throwError $ unexpectedInput (show x)
+
+eof
+  :: (Parsable s,
+      ParserError e,
+      Monoid e,
+      Monad m,
+      Show (Elem s),
+      Positioned (Elem s)
+  ) => ParserT s e m ()
+eof = notFollowedBy item <?> "eof"
