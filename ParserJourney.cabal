@@ -68,6 +68,7 @@ library
                       ParserJourney.Combinators.CharCombinators,
                       ParserJourney.Combinators.BasicCombinators,
                       ParserJourney.Combinators.SequenceCombinators,
+                      ParserJourney.Combinators.SeparationCombinators,
 
                       ParserJourney.TypeClasses.IsDigit,
                       ParserJourney.TypeClasses.IsAlpha,
@@ -103,6 +104,9 @@ test-suite ParserJourney-test
 
                    CombinatorsTest.NewlineSpec,
                    CombinatorsTest.TokenSpec,
+
+                   CombinatorsTest.SepBy.SepBy1Spec,
+                   CombinatorsTest.SepBy.SepBy0Spec,
 
                    CombinatorsTest.Digit.DigitSpec,
                    CombinatorsTest.Digit.Digit1Spec,

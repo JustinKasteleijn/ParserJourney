@@ -74,9 +74,9 @@ Just me developing my own parser library as preparation for Advent of Code :)
 
 | Combinator | Implemented | Tested |
 |---|:---:|:---:|
-| `sepBy` | [ ] | [ ] |
-| `sepBy1` | [ ] | [ ] |
-| `sepEndBy` | [ ] | [ ] |
+| `sepBy0` | [x] | [x] |
+| `sepBy1` | [x] | [x] |
+| `sepEndBy0` | [ ] | [ ] |
 | `sepEndBy1` | [ ] | [ ] |
 | `endBy` | [ ] | [ ] |
 | `endBy1` | [ ] | [ ] |
