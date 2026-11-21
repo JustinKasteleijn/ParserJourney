@@ -76,8 +76,8 @@ Just me developing my own parser library as preparation for Advent of Code :)
 |---|:---:|:---:|
 | `sepBy0` | [x] | [x] |
 | `sepBy1` | [x] | [x] |
-| `sepEndBy0` | [ ] | [ ] |
-| `sepEndBy1` | [ ] | [ ] |
+| `sepEndBy0` | [x] | [x] |
+| `sepEndBy1` | [x] | [x] |
 | `endBy` | [ ] | [ ] |
 | `endBy1` | [ ] | [ ] |
 

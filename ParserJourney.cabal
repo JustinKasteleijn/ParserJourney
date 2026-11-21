@@ -107,6 +107,8 @@ test-suite ParserJourney-test
 
                    CombinatorsTest.SepBy.SepBy1Spec,
                    CombinatorsTest.SepBy.SepBy0Spec,
+                   CombinatorsTest.SepBy.SepEndBy0Spec,
+                   CombinatorsTest.SepBy.SepEndBy1Spec,
 
                    CombinatorsTest.Digit.DigitSpec,
                    CombinatorsTest.Digit.Digit1Spec,
