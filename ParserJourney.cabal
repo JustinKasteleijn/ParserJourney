@@ -70,8 +70,10 @@ library
                       ParserJourney.Combinators.SequenceCombinators,
                       ParserJourney.Combinators.SeparationCombinators,
                       ParserJourney.Combinators.LookAheadCombinators,
+                      ParserJourney.Combinators.NumberCombinators,
 
                       ParserJourney.TypeClasses.IsDigit,
+                      ParserJourney.TypeClasses.ToDigit,
                       ParserJourney.TypeClasses.IsAlpha,
                       ParserJourney.TypeClasses.IsSpace
 
@@ -107,6 +109,7 @@ test-suite ParserJourney-test
                    CombinatorsTest.NewlineSpec,
                    CombinatorsTest.TokenSpec,
                    CombinatorsTest.EOFSpec,
+                   CombinatorsTest.IntegerSpec,
 
                    CombinatorsTest.SepBy.SepBy1Spec,
                    CombinatorsTest.SepBy.SepBy0Spec,

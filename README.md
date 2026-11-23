@@ -42,8 +42,9 @@ Just me developing my own parser library as preparation for Advent of Code :)
 | `lower` | [ ] | [ ] |
 | `lower0` | [ ] | [ ] |
 | `lower1` | [ ] | [ ] |
-| `space` | [ ] | [ ] |
-| `spaces` | [ ] | [ ] |
+| `space` | [x] | [x] |
+| `spaces1` | [x] | [x] |
+| `spaces0` | [x] | [x] |
 | `newline` | [x] | [x] |
 | `tab` | [ ] | [ ] |
 | `horizontalSpace` | [ ] | [ ] |
@@ -87,7 +88,7 @@ Just me developing my own parser library as preparation for Advent of Code :)
 |---|:---:|:---:|
 | `decimal` | [ ] | [ ] |
 | `natural` | [ ] | [ ] |
-| `integer` | [ ] | [ ] |
+| `integer` | [x] | [x] |
 | `hexadecimal` | [ ] | [ ] |
 
 ## LexerCombinators

@@ -3,11 +3,13 @@ module ParserJourney.Combinators (
     module ParserJourney.Combinators.CharCombinators,
     module ParserJourney.Combinators.SequenceCombinators,
     module ParserJourney.Combinators.SeparationCombinators,
-    module ParserJourney.Combinators.LookAheadCombinators
+    module ParserJourney.Combinators.LookAheadCombinators,
+    module ParserJourney.Combinators.NumberCombinators
 ) where
 
 import           ParserJourney.Combinators.BasicCombinators
 import           ParserJourney.Combinators.CharCombinators
 import           ParserJourney.Combinators.LookAheadCombinators
+import           ParserJourney.Combinators.NumberCombinators
 import           ParserJourney.Combinators.SeparationCombinators
 import           ParserJourney.Combinators.SequenceCombinators
