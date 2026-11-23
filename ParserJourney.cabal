@@ -73,6 +73,7 @@ library
 
                       ParserJourney.TypeClasses.IsDigit,
                       ParserJourney.TypeClasses.IsAlpha,
+                      ParserJourney.TypeClasses.IsSpace
 
     -- Modules included in this library but not exported.
     -- other-modules:
@@ -105,6 +106,7 @@ test-suite ParserJourney-test
                    CombinatorsTest.NotFollowedBySpec,
                    CombinatorsTest.NewlineSpec,
                    CombinatorsTest.TokenSpec,
+                   CombinatorsTest.EOFSpec,
 
                    CombinatorsTest.SepBy.SepBy1Spec,
                    CombinatorsTest.SepBy.SepBy0Spec,
@@ -114,6 +116,10 @@ test-suite ParserJourney-test
                    CombinatorsTest.Digit.DigitSpec,
                    CombinatorsTest.Digit.Digit1Spec,
                    CombinatorsTest.Digit.Digit0Spec,
+
+                   CombinatorsTest.Spaces.SpaceSpec,
+                   CombinatorsTest.Spaces.Spaces1Spec,
+                   CombinatorsTest.Spaces.Spaces0Spec,
 
                    CombinatorsTest.Alpha.Alpha0Spec,
                    CombinatorsTest.Alpha.Alpha1Spec,

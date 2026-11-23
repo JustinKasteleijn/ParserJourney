@@ -105,6 +105,8 @@ Just me developing my own parser library as preparation for Advent of Code :)
 
 ## LookAheadCombinators
 
+Currently parser is not greedy so these are redundant until its implemented :).
+
 | Combinator | Implemented | Tested |
 |---|:---:|:---:|
 | `try` | [ ] | [ ] |

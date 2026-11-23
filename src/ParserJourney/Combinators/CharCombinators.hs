@@ -12,6 +12,7 @@ import           ParserJourney.ParserError                  (ParserError)
 import           ParserJourney.ParserInput                  (Positioned (isNewline))
 import           ParserJourney.TypeClasses.IsAlpha          (IsAlpha (isAlpha))
 import           ParserJourney.TypeClasses.IsDigit          (IsDigit (isDigit))
+import           ParserJourney.TypeClasses.IsSpace          (IsSpace (isSpace))
 
 letter
   :: (Parsable s,
@@ -111,3 +112,36 @@ char
   ) => Elem s
   -> ParserT s e m (Elem s)
 char = token
+
+space
+  :: (Parsable s,
+      ParserError e,
+      Monoid e,
+      Positioned (Elem s),
+      Monad m,
+      Show (Elem s),
+      IsSpace (Elem s)
+  ) => ParserT s e m ()
+space = void $ satisfy isSpace <?> "space"
+
+spaces0
+  :: (Parsable s,
+      ParserError e,
+      Monoid e,
+      Positioned (Elem s),
+      Monad m,
+      Show (Elem s),
+      IsSpace (Elem s)
+  ) => ParserT s e m ()
+spaces0 = void $ many space
+
+spaces1
+  :: (Parsable s,
+      ParserError e,
+      Monoid e,
+      Positioned (Elem s),
+      Monad m,
+      Show (Elem s),
+      IsSpace (Elem s)
+  ) => ParserT s e m ()
+spaces1 = void $ some space
