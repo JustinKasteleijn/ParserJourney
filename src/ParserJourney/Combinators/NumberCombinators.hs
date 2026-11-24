@@ -7,7 +7,8 @@ module ParserJourney.Combinators.NumberCombinators where
 import           Control.Applicative                       ((<|>))
 import           Data.Data                                 (Proxy (Proxy))
 import           Data.List                                 (foldl')
-import           Data.Word                                 (Word8)
+import           Data.Word                                 (Word16, Word32,
+                                                            Word64, Word8)
 import           ParserJourney.Combinators.CharCombinators (digit1, minus)
 import           ParserJourney.Parsable                    (Parsable (..))
 import           ParserJourney.Parser                      (ParserT, throwError)
@@ -67,3 +68,39 @@ u8
       ToDigit (Elem s)
   ) => ParserT s e m Word8
 u8 = parseBounded
+
+u16
+  :: forall s e m.
+     (Parsable s,
+      ParserError e,
+      Monoid e,
+      Monad m,
+      Positioned (Elem s),
+      Show (Elem s),
+      ToDigit (Elem s)
+  ) => ParserT s e m Word16
+u16 = parseBounded
+
+u32
+  :: forall s e m.
+     (Parsable s,
+      ParserError e,
+      Monoid e,
+      Monad m,
+      Positioned (Elem s),
+      Show (Elem s),
+      ToDigit (Elem s)
+  ) => ParserT s e m Word32
+u32 = parseBounded
+
+u64
+  :: forall s e m.
+     (Parsable s,
+      ParserError e,
+      Monoid e,
+      Monad m,
+      Positioned (Elem s),
+      Show (Elem s),
+      ToDigit (Elem s)
+  ) => ParserT s e m Word64
+u64 = parseBounded
