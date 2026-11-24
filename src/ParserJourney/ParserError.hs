@@ -25,10 +25,10 @@ instance ParserError String where
   unexpectedMatch match = "Unexpected match: " ++ match
 
   lesserThanMinbound :: forall a. (Bounded a, Show a) => Proxy a -> Integer -> String
-  lesserThanMinbound _ actual = "Expected: smaller than " ++ show (minBound :: a) ++ " got: " ++ show actual
+  lesserThanMinbound _ actual = "Expected: greather than " ++ show (minBound :: a) ++ " got: " ++ show actual
 
   greatherThanMaxBound :: forall a. (Bounded a, Show a) => Proxy a -> Integer -> String
-  greatherThanMaxBound _ actual = "Expected: greather than " ++ show (maxBound :: a) ++ " got: " ++ show actual
+  greatherThanMaxBound _ actual = "Expected: lesser than " ++ show (maxBound :: a) ++ " got: " ++ show actual
 
   addLabel :: String -> String -> String
   addLabel label err = "Expected: " ++ label ++ ", but got: " ++ err

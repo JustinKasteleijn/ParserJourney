@@ -2,13 +2,12 @@
 
 module CombinatorsTest.UnsignedIntSpec (spec) where
 
-import           Generic
-import           Data.Word
 import           Data.Data
+import           Data.Word
+import           Generic
 import           ParserJourney.Combinators
-import           ParserJourney.ParserInput                  (ParserState (..),
-                                                             Position (..))
 import           ParserJourney.ParserError
+import           ParserJourney.ParserInput (ParserState (..), Position (..))
 import           Test.Hspec
 
 spec :: Spec

@@ -2,14 +2,12 @@ module CombinatorsTest.SepBy.SepEndBy0Spec (spec) where
 
 import           Generic
 import           ParserJourney.Combinators
-import           ParserJourney.ParserInput                 (ParserState (..),
-                                                            Position (..))
+import           ParserJourney.ParserInput (ParserState (..), Position (..))
 import           Test.Hspec
 
 spec :: Spec
 spec = describe "Test sepEndBy0 Parser Combinator" $
          runTestCases (sepEndBy0 (char ',') digit) testCases
-
 
 testCases :: [TestCase String String]
 testCases = [

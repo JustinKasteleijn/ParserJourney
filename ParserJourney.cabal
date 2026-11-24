@@ -111,6 +111,7 @@ test-suite ParserJourney-test
                    CombinatorsTest.EOFSpec,
                    CombinatorsTest.IntegerSpec,
                    CombinatorsTest.UnsignedIntSpec,
+                   CombinatorsTest.SignedIntSpec,
 
                    CombinatorsTest.SepBy.SepBy1Spec,
                    CombinatorsTest.SepBy.SepBy0Spec,

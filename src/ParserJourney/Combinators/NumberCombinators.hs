@@ -6,6 +6,8 @@ module ParserJourney.Combinators.NumberCombinators where
 
 import           Control.Applicative                       ((<|>))
 import           Data.Data                                 (Proxy (Proxy))
+import           Data.Int                                  (Int16, Int32, Int64,
+                                                            Int8)
 import           Data.List                                 (foldl')
 import           Data.Word                                 (Word16, Word32,
                                                             Word64, Word8)
@@ -56,7 +58,6 @@ parseBounded = do
     (_, True) -> throwError $ lesserThanMinbound (Proxy @a) n
     _         -> pure (fromInteger n)
 
-
 u8
   :: forall s e m.
      (Parsable s,
@@ -104,3 +105,51 @@ u64
       ToDigit (Elem s)
   ) => ParserT s e m Word64
 u64 = parseBounded
+
+i8
+  :: forall s e m.
+     (Parsable s,
+      ParserError e,
+      Monoid e,
+      Monad m,
+      Positioned (Elem s),
+      Show (Elem s),
+      ToDigit (Elem s)
+  ) => ParserT s e m Int8
+i8 = parseBounded
+
+i16
+  :: forall s e m.
+     (Parsable s,
+      ParserError e,
+      Monoid e,
+      Monad m,
+      Positioned (Elem s),
+      Show (Elem s),
+      ToDigit (Elem s)
+  ) => ParserT s e m Int16
+i16 = parseBounded
+
+i32
+  :: forall s e m.
+     (Parsable s,
+      ParserError e,
+      Monoid e,
+      Monad m,
+      Positioned (Elem s),
+      Show (Elem s),
+      ToDigit (Elem s)
+  ) => ParserT s e m Int32
+i32 = parseBounded
+
+i64
+  :: forall s e m.
+     (Parsable s,
+      ParserError e,
+      Monoid e,
+      Monad m,
+      Positioned (Elem s),
+      Show (Elem s),
+      ToDigit (Elem s)
+  ) => ParserT s e m Int64
+i64 = parseBounded
