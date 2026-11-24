@@ -28,5 +28,10 @@ testCases = [
         testInput   = "1",
         expected    = Right (1, ParserState "" (Position 2 1)),
         description = "Test whether integer correctly parses and converts single digit"
-      }
+      },
+      TestCase {
+          testInput   = "-3451",
+          expected    = Right (-3451, ParserState "" (Position 6 1)),
+          description = "Test whether integer correctly parses and converts negative number"
+        }
   ]
