@@ -4,8 +4,8 @@
 module ParserJourney.ParserInput where
 
 data Position = Position {
-    col  :: Int,
-    line :: Int
+    col  :: !Int,
+    line :: !Int
 } deriving (Eq)
 
 instance Show Position where
@@ -27,7 +27,7 @@ instance Positioned Char where
 
 data ParserState s = ParserState {
     input :: s,
-    pos   :: Position
+    pos   :: !Position
 } deriving (Show, Eq)
 
 initialParserState :: (Monoid s) => ParserState s
