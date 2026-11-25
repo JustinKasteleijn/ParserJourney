@@ -7,6 +7,7 @@ module ParserJourney.Combinators.BasicCombinators (
     eof
 ) where
 
+import qualified Control.Applicative                            as ControlApplicative
 import           ParserJourney.Combinators.LookAheadCombinators (notFollowedBy)
 import           ParserJourney.Parsable                         (Parsable (Elem, uncons))
 import           ParserJourney.Parser                           (ParserT (..),
@@ -56,6 +57,20 @@ satisfy f = do
   if f x
      then pure x
      else throwError $ unexpectedInput (show x)
+
+optional
+  :: (Monoid e,
+      Monad m
+  ) => ParserT s e m a
+    -> ParserT s e m (Maybe a)
+optional = ControlApplicative.optional
+
+choice
+  :: (Monoid e,
+      Monad m
+  ) => [ParserT s e m a]
+    -> ParserT s e m a
+choice = ControlApplicative.asum
 
 eof
   :: (Parsable s,

@@ -1,3 +1,4 @@
+{-# LANGUAGE NegativeLiterals #-}
 {-# LANGUAGE TypeApplications #-}
 
 module CombinatorsTest.SignedIntSpec (spec) where
@@ -85,7 +86,7 @@ testCasesi32 = [
       },
       TestCase {
           testInput   = "-2147483648",
-          expected    = Right (2147483648, ParserState "" (Position 12 1)),
+          expected    = Right (-2147483648, ParserState "" (Position 12 1)),
           description = "Test whether i32 correctly parses boundary value -2147483648"
         }
   ]

@@ -13,8 +13,8 @@ Just me developing my own parser library as preparation for Advent of Code :)
 | `item` | [x] | [x] |
 | `satisfy` | [x] | [x] |
 | `eof` | [x] | [x] |
-| `choice` | [ ] | [ ] |
-| `optional` | [ ] | [ ] |
+| `choice` | [x] | [ ] |
+| `optional` | [x] | [ ] |
 | `unexpected` | [ ] | [ ] |
 | `<?>` | [x] | [ ] |
 

@@ -3,13 +3,12 @@ module CombinatorsTest.SepBy.SepBy1Spec (spec) where
 import           Generic
 import           ParserJourney.Combinators
 import           ParserJourney.ParserError
-import           ParserJourney.ParserInput                 (ParserState (..),
-                                                            Position (..))
+import           ParserJourney.ParserInput (ParserState (..), Position (..))
 import           Test.Hspec
 
 spec :: Spec
 spec = describe "Test SepBy1 Parser Combinator" $
-         runTestCases (sepBy1 (char ',') digit) testCases
+         runTestCases (digit `sepBy1` char ',') testCases
 
 
 testCases :: [TestCase String String]

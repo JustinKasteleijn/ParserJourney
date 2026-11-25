@@ -7,7 +7,7 @@ import           Test.Hspec
 
 spec :: Spec
 spec = describe "Test sepEndBy0 Parser Combinator" $
-         runTestCases (sepEndBy0 (char ',') digit) testCases
+         runTestCases (digit `sepEndBy0` char ',') testCases
 
 testCases :: [TestCase String String]
 testCases = [
