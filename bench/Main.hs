@@ -1,6 +1,7 @@
 
 module Main where
 
+import Prelude hiding (lines)
 import Criterion.Main
 import ParserJourney.Combinators
 import ParserJourney.Parser
@@ -18,10 +19,10 @@ main = do
     ]
 
 input :: String
-input = replicate 100000 'a'
+input = "12\n13\n14\n15\n"
 
-parseExample :: String -> String
+parseExample :: String -> [Integer]
 parseExample inp =
-  case runIdentity (parse (many item) inp) of
+  case runIdentity (parse (lines integer) inp) of
     Left err      -> error err
     Right (r', _) -> r'

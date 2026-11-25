@@ -4,6 +4,8 @@ module ParserJourney.Combinators.BasicCombinators (
     (<?>),
     item,
     satisfy,
+    optional,
+    choice,
     eof
 ) where
 

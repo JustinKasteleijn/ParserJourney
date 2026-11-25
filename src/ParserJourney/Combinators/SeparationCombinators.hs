@@ -16,9 +16,9 @@ sepBy1
       Monoid e,
       Monad m,
       Show (Elem s)
-  ) => ParserT s e m (Elem s)
+  ) => ParserT s e m a
     -> ParserT s e m sep
-    -> ParserT s e m [Elem s]
+    -> ParserT s e m [a]
 sepBy1 p psep = (:) <$> p <*> many (psep >> p)
 
 sepBy0
@@ -27,9 +27,9 @@ sepBy0
       Monoid e,
       Monad m,
       Show (Elem s)
-  ) => ParserT s e m (Elem s)
+  ) => ParserT s e m a
     -> ParserT s e m sep
-    -> ParserT s e m [Elem s]
+    -> ParserT s e m [a]
 sepBy0 p psep = sepBy1 p psep <|> pure []
 
 sepEndBy1
@@ -38,9 +38,9 @@ sepEndBy1
       Monoid e,
       Monad m,
       Show (Elem s)
-  ) => ParserT s e m (Elem s)
+  ) => ParserT s e m a
     -> ParserT s e m sep
-    -> ParserT s e m [Elem s]
+    -> ParserT s e m [a]
 sepEndBy1 p psep = sepBy1 p psep <* optional psep
 
 sepEndBy0
@@ -49,9 +49,9 @@ sepEndBy0
       Monoid e,
       Monad m,
       Show (Elem s)
-  ) => ParserT s e m (Elem s)
+  ) => ParserT s e m a
     -> ParserT s e m sep
-    -> ParserT s e m [Elem s]
+    -> ParserT s e m [a]
 sepEndBy0 p psep = sepBy0 p psep <* optional psep
 
 lines
@@ -61,6 +61,6 @@ lines
       Monad m,
       Show (Elem s),
       Positioned (Elem s)
-  ) => ParserT s e m (Elem s)
-    -> ParserT s e m [Elem s]
+  ) => ParserT s e m a
+    -> ParserT s e m [a]
 lines line = line `sepEndBy1` newline
