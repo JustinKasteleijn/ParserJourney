@@ -71,6 +71,7 @@ library
                       ParserJourney.Combinators.SeparationCombinators,
                       ParserJourney.Combinators.LookAheadCombinators,
                       ParserJourney.Combinators.NumberCombinators,
+                      ParserJourney.Combinators.RepetitionCombinators,
 
                       ParserJourney.TypeClasses.IsDigit,
                       ParserJourney.TypeClasses.ToDigit,

@@ -4,6 +4,7 @@ module ParserJourney.Combinators.BasicCombinators (
     (<?>),
     item,
     satisfy,
+    between,
     optional,
     choice,
     eof
@@ -73,6 +74,14 @@ choice
   ) => [ParserT s e m a]
     -> ParserT s e m a
 choice = ControlApplicative.asum
+
+between
+  :: (Monad m)
+  => ParserT s e m open
+  -> ParserT s e m close
+  -> ParserT s e m a
+  -> ParserT s e m a
+between pOpen pClose p = pOpen *> p <* pClose
 
 eof
   :: (Parsable s,

@@ -13,6 +13,7 @@ Just me developing my own parser library as preparation for Advent of Code :)
 | `item` | [x] | [x] |
 | `satisfy` | [x] | [x] |
 | `eof` | [x] | [x] |
+| `between` | [x] | [ ] |
 | `choice` | [x] | [ ] |
 | `optional` | [x] | [ ] |
 | `unexpected` | [ ] | [ ] |
@@ -64,12 +65,11 @@ Just me developing my own parser library as preparation for Advent of Code :)
 
 | Combinator | Implemented | Tested |
 |---|:---:|:---:|
-| `many` | [ ] | [ ] |
-| `some` | [ ] | [ ] |
+| `many` | [x] | [x] |
+| `some` | [x] | [x] |
 | `count` | [ ] | [ ] |
 | `skipMany` | [ ] | [ ] |
 | `skipSome` | [ ] | [ ] |
-| `between` | [ ] | [ ] |
 
 ## SeparationCombinators
 
@@ -81,6 +81,7 @@ Just me developing my own parser library as preparation for Advent of Code :)
 | `sepEndBy1` | [x] | [x] |
 | `endBy` | [ ] | [ ] |
 | `endBy1` | [ ] | [ ] |
+| `lines`  | [x] | [ ] | 
 
 ## NumberCombinators
 
