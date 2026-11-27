@@ -2,6 +2,7 @@ module CombinatorsTest.ItemSpec (spec) where
 
 import           Generic
 import           ParserJourney.Combinators.BasicCombinators
+import           ParserJourney.ParserError                  (ParserError (unexpectedEOF))
 import           ParserJourney.ParserInput                  (ParserState (..),
                                                              Position (..))
 import           Test.Hspec
@@ -25,7 +26,7 @@ testCases = [
       },
     TestCase {
         testInput   = "",
-        expected    = Left "Unexpected EOF",
+        expected    = Left $ unexpectedEOF (Position 1 1),
         description = "Test whether item correctly reports unexpected end of file"
       }
   ]

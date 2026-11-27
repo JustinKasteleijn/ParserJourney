@@ -21,7 +21,7 @@ testCases = [
       },
     TestCase {
         testInput   = "",
-        expected    = Left $ "Expected: alpha, but got: " ++ unexpectedEOF,
+        expected    = Left $ "Expected: alpha, but got: " ++ unexpectedEOF (Position 1 1),
         description = "Test whether letter1 correctly rejects EOF"
       },
       TestCase {

@@ -2,9 +2,9 @@ module CombinatorsTest.NewlineSpec (spec) where
 
 import           Generic
 import           ParserJourney.Combinators.CharCombinators
+import           ParserJourney.ParserError
 import           ParserJourney.ParserInput                 (ParserState (..),
                                                             Position (..))
-import           ParserJourney.ParserError
 import           Test.Hspec
 
 spec :: Spec
@@ -26,12 +26,12 @@ testCases = [
       },
     TestCase {
         testInput   = "",
-        expected    = Left $ "Expected: newline, but got: " ++ unexpectedEOF,
+        expected    = Left $ "Expected: newline, but got: " ++ unexpectedEOF (Position 1 1),
         description = "Test whether newline fails on newline"
      },
      TestCase {
          testInput   = "a",
-         expected    = Left $ "Expected: newline, but got: " ++ unexpectedInput "'a'",
+         expected    = Left $ "Expected: newline, but got: " ++ unexpectedInput (Position 1 1) "'a'",
          description = "Test whether newline fails on non newline character"
      }
   ]

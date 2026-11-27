@@ -5,21 +5,22 @@
 module ParserJourney.ParserError where
 
 import           Data.Proxy
+import           ParserJourney.ParserInput (Position)
 
 class ParserError e where
-  unexpectedEOF :: e
-  unexpectedInput :: String -> e
+  unexpectedEOF :: Position ->  e
+  unexpectedInput :: Position -> String -> e
   unexpectedMatch :: String -> e
   lesserThanMinbound :: forall a. (Bounded a, Show a) => Proxy a -> Integer -> e
   greatherThanMaxBound :: forall a. (Bounded a, Show a) => Proxy a -> Integer -> e
   addLabel :: String -> e -> e
 
 instance ParserError String where
-  unexpectedEOF :: String
-  unexpectedEOF = "Unexpected EOF"
+  unexpectedEOF :: Position -> String
+  unexpectedEOF pos = "Unexpected EOF at: " ++ show pos
 
-  unexpectedInput :: String -> String
-  unexpectedInput actual = "Unexpected input: " ++ actual
+  unexpectedInput :: Position -> String -> String
+  unexpectedInput pos actual = "Unexpected input: " ++ actual ++ "  at: " ++ show pos
 
   unexpectedMatch :: String -> String
   unexpectedMatch match = "Unexpected match: " ++ match

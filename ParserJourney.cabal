@@ -127,6 +127,8 @@ test-suite ParserJourney-test
                    CombinatorsTest.IntegerSpec,
                    CombinatorsTest.UnsignedIntSpec,
                    CombinatorsTest.SignedIntSpec,
+                   CombinatorsTest.DecimalSpec,
+                   CombinatorsTest.NatSpec,
 
                    CombinatorsTest.SepBy.SepBy1Spec,
                    CombinatorsTest.SepBy.SepBy0Spec,

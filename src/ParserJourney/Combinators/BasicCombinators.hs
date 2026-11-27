@@ -14,6 +14,7 @@ import qualified Control.Applicative                            as ControlApplic
 import           ParserJourney.Combinators.LookAheadCombinators (notFollowedBy)
 import           ParserJourney.Parsable                         (Parsable (Elem, uncons))
 import           ParserJourney.Parser                           (ParserT (..),
+                                                                 getPosition,
                                                                  throwError)
 import           ParserJourney.ParserError                      (ParserError (addLabel, unexpectedEOF, unexpectedInput))
 import           ParserJourney.ParserInput                      (ParserState (ParserState),
@@ -41,7 +42,7 @@ item
   => ParserT s e f (Elem s)
 item = ParserT $ \(ParserState s p)
   -> case uncons s of
-       Nothing      -> pure $ Left unexpectedEOF
+       Nothing      -> pure $ Left $ unexpectedEOF p
        Just (x, s') ->
          let pos' = advancePos p x
           in pure $ Right (x, ParserState s' pos')
@@ -56,10 +57,11 @@ satisfy
   => (Elem s -> Bool)
   -> ParserT s e m (Elem s)
 satisfy f = do
+  p <- getPosition
   x <- item
   if f x
      then pure x
-     else throwError $ unexpectedInput (show x)
+     else throwError $ unexpectedInput p (show x)
 
 optional
   :: (Monoid e,

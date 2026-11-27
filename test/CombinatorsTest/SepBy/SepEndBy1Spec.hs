@@ -20,7 +20,7 @@ testCases = [
       },
     TestCase {
         testInput   = "",
-        expected    = Left $ "Expected: digit, but got: " ++ unexpectedEOF,
+        expected    = Left $ "Expected: digit, but got: " ++ unexpectedEOF (Position 1 1),
         description = "Test whether sepEndBy1 correctly accepts EOF"
       },
     TestCase {

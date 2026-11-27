@@ -21,7 +21,7 @@ testCases = [
       },
     TestCase {
         testInput   = "111",
-        expected    = Left $ "Expected: alpha, but got: " ++ unexpectedInput "'1'",
+        expected    = Left $ "Expected: alpha, but got: " ++ unexpectedInput (Position 1 1) "'1'",
         description = "Test whether letter correctly rejects non alpha character"
       }
   ]

@@ -1,10 +1,12 @@
 module CombinatorsTest.SatisfySpec (spec) where
 
-import Test.Hspec
-import Generic
-import Data.Char (isDigit)
-import ParserJourney.ParserInput (ParserState(..), Position(..))
-import ParserJourney.Combinators.BasicCombinators
+import           Data.Char                                  (isDigit)
+import           Generic
+import           ParserJourney.Combinators.BasicCombinators
+import           ParserJourney.ParserError                  (ParserError (unexpectedInput))
+import           ParserJourney.ParserInput                  (ParserState (..),
+                                                             Position (..))
+import           Test.Hspec
 
 spec :: Spec
 spec = describe "Test Satisfy Parser Combinator" $
@@ -19,7 +21,7 @@ testCases = [
       },
     TestCase {
         testInput   = "a2",
-        expected    = Left "Unexpected input: 'a'",
+        expected    = Left $ unexpectedInput (Position 1 1) "'a'",
         description = "Test if satisfy correctly fails if the predicate is False"
       }
   ]

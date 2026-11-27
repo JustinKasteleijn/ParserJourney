@@ -21,7 +21,7 @@ testCases = [
       },
     TestCase {
         testInput   = "aaa",
-        expected    = Left $ "Expected: digit, but got: " ++ unexpectedInput "'a'",
+        expected    = Left $ "Expected: digit, but got: " ++ unexpectedInput (Position 1 1) "'a'",
         description = "Test whether digit correctly rejects non digit character"
       }
   ]

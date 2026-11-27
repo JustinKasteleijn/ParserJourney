@@ -3,8 +3,7 @@ module CombinatorsTest.Spaces.Spaces1Spec (spec) where
 import           Generic
 import           ParserJourney.Combinators
 import           ParserJourney.ParserError
-import           ParserJourney.ParserInput                 (ParserState (..),
-                                                            Position (..))
+import           ParserJourney.ParserInput (ParserState (..), Position (..))
 import           Test.Hspec
 
 spec :: Spec
@@ -21,7 +20,7 @@ testCases = [
       },
     TestCase {
         testInput   = "",
-        expected    = Left $ "Expected: space, but got: " ++ unexpectedEOF,
+        expected    = Left $ "Expected: space, but got: " ++ unexpectedEOF (Position 1 1),
         description = "Test whether space1 correctly rejects EOF"
       },
       TestCase {

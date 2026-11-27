@@ -26,7 +26,7 @@ testCases = [
       },
     TestCase {
         testInput   = "-1",
-        expected    = Left $ "Expected: nat, but got: Unexpected input: -1", -- Hardcoded change in the future :) (famous last words)
+        expected    = Left "Expected: nat, but got: Unexpected input: -1  at: 1:1", -- Hardcoded change in the future :) (famous last words)
         description = "Test whether nat correctly fails on negative value"
       }
   ]

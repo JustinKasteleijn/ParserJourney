@@ -25,7 +25,7 @@ testCases = [
       },
     TestCase {
         testInput   = "1;0",
-        expected    = Left "Expected: decimal, but got: Unexpected input: ';'", -- Hardcoded for now change in the future
+        expected    = Left "Expected: decimal, but got: Unexpected input: ';'  at: 1:2", -- Hardcoded for now change in the future
         description = "Test whether nat correctly fails on negative value"
       }
   ]

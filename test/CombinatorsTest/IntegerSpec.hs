@@ -2,9 +2,8 @@ module CombinatorsTest.IntegerSpec (spec) where
 
 import           Generic
 import           ParserJourney.Combinators
-import           ParserJourney.ParserInput                  (ParserState (..),
-                                                             Position (..))
 import           ParserJourney.ParserError
+import           ParserJourney.ParserInput (ParserState (..), Position (..))
 import           Test.Hspec
 
 spec :: Spec
@@ -21,7 +20,7 @@ testCases = [
       },
     TestCase {
         testInput   = "ignore else",
-        expected    = Left $ "Expected: digit, but got: " ++ unexpectedInput "'i'",
+        expected    = Left $ "Expected: digit, but got: " ++ unexpectedInput (Position 1 1) "'i'",
         description = "Test whether integer fails on non integer input"
       },
     TestCase {

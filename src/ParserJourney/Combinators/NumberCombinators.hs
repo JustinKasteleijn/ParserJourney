@@ -30,6 +30,7 @@ import           ParserJourney.Combinators.CharCombinators    (digit0, digit1,
                                                                minus)
 import           ParserJourney.Parsable                       (Parsable (..))
 import           ParserJourney.Parser                         (ParserT,
+                                                               getPosition,
                                                                throwError)
 import           ParserJourney.ParserError                    (ParserError (greatherThanMaxBound, lesserThanMinbound, unexpectedInput))
 import           ParserJourney.ParserInput                    (Positioned)
@@ -178,9 +179,10 @@ nat
       ToDigit (Elem s)
   ) => ParserT s e m Integer
 nat = do
+  p <- getPosition
   i <- integer
   if i < 0
-     then throwError (unexpectedInput (show i)) <?> "nat"
+     then throwError (unexpectedInput p (show i)) <?> "nat"
      else pure i
 
 decimal

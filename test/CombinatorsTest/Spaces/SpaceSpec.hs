@@ -3,8 +3,7 @@ module CombinatorsTest.Spaces.SpaceSpec (spec) where
 import           Generic
 import           ParserJourney.Combinators
 import           ParserJourney.ParserError
-import           ParserJourney.ParserInput                 (ParserState (..),
-                                                            Position (..))
+import           ParserJourney.ParserInput (ParserState (..), Position (..))
 import           Test.Hspec
 
 spec :: Spec
@@ -21,7 +20,7 @@ testCases = [
       },
     TestCase {
         testInput   = "aaa",
-        expected    = Left $ "Expected: space, but got: " ++ unexpectedInput "'a'",
+        expected    = Left $ "Expected: space, but got: " ++ unexpectedInput (Position 1 1) "'a'",
         description = "Test whether space correctly rejects non digit character"
       }
   ]

@@ -1,10 +1,10 @@
 module CombinatorsTest.TokenSpec (spec) where
 
 import           Generic
-import           ParserJourney.ParserError
 import           ParserJourney.Combinators.CharCombinators
-import           ParserJourney.ParserInput                  (ParserState (..),
-                                                             Position (..))
+import           ParserJourney.ParserError
+import           ParserJourney.ParserInput                 (ParserState (..),
+                                                            Position (..))
 import           Test.Hspec
 
 spec :: Spec
@@ -21,7 +21,7 @@ testCases = [
       },
     TestCase {
         testInput   = "bello",
-        expected    = Left $ "Expected: 'h', but got: " ++ unexpectedInput "'b'",
+        expected    = Left $ "Expected: 'h', but got: " ++ unexpectedInput (Position 1 1) "'b'",
         description = "Test whether token rejects the wrong character"
       }
   ]
