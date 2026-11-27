@@ -196,8 +196,8 @@ decimal
 decimal = (do
   sign    <- negate <$ minus <|> pure id
   whole   <- nat
-  _       <- satisfy isDecimalSeparator
-  mDigits <- optional digit0
+  mDigits <- satisfy isDecimalSeparator
+                *> optional digit0
   let fraction = case mDigits of
          Just digits -> fromIntegral (_foldDigits digits) / (10 ^ length digits)
          Nothing     -> 0

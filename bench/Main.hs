@@ -22,7 +22,7 @@ main = do
     ]
 
 inputt :: String
-inputt = "[" ++ intercalate "," (replicate 10000 "1.1,2.2,3.31482434241") ++ "]"
+inputt = "[" ++ intercalate "," (replicate 10000 "1.0,2.2,3.31482434241") ++ "]"
 
 instance NFData s => NFData (ParserState s) where
   rnf (ParserState inp position) =
