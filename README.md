@@ -87,8 +87,8 @@ Just me developing my own parser library as preparation for Advent of Code :)
 
 | Combinator | Implemented | Tested |
 |---|:---:|:---:|
-| `decimal` | [ ] | [ ] |
-| `natural` | [ ] | [ ] |
+| `decimal` | [x] | [x] |
+| `natural` | [x] | [x] |
 | `integer` | [x] | [x] |
 | `hexadecimal` | [ ] | [ ] |
 
