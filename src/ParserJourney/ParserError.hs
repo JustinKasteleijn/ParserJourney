@@ -10,9 +10,9 @@ import           ParserJourney.ParserInput (Position)
 class ParserError e where
   unexpectedEOF :: Position ->  e
   unexpectedInput :: Position -> String -> e
-  unexpectedMatch :: String -> e
-  lesserThanMinbound :: forall a. (Bounded a, Show a) => Proxy a -> Integer -> e
-  greatherThanMaxBound :: forall a. (Bounded a, Show a) => Proxy a -> Integer -> e
+  unexpectedMatch :: Position -> String -> e
+  lesserThanMinbound :: forall a. (Bounded a, Show a) => Proxy a -> Position -> Integer -> e
+  greatherThanMaxBound :: forall a. (Bounded a, Show a) => Proxy a -> Position -> Integer -> e
   addLabel :: String -> e -> e
 
 instance ParserError String where
@@ -22,14 +22,14 @@ instance ParserError String where
   unexpectedInput :: Position -> String -> String
   unexpectedInput pos actual = "Unexpected input: " ++ actual ++ "  at: " ++ show pos
 
-  unexpectedMatch :: String -> String
-  unexpectedMatch match = "Unexpected match: " ++ match
+  unexpectedMatch :: Position -> String -> String
+  unexpectedMatch pos match = "Unexpected match: " ++ match ++ " at: " ++ show pos
 
-  lesserThanMinbound :: forall a. (Bounded a, Show a) => Proxy a -> Integer -> String
-  lesserThanMinbound _ actual = "Expected: greather than " ++ show (minBound :: a) ++ " got: " ++ show actual
+  lesserThanMinbound :: forall a. (Bounded a, Show a) => Proxy a -> Position -> Integer -> String
+  lesserThanMinbound _ pos actual = "Expected: greather than " ++ show (minBound :: a) ++ " got: " ++ show actual ++ " at: " ++ show pos
 
-  greatherThanMaxBound :: forall a. (Bounded a, Show a) => Proxy a -> Integer -> String
-  greatherThanMaxBound _ actual = "Expected: lesser than " ++ show (maxBound :: a) ++ " got: " ++ show actual
+  greatherThanMaxBound :: forall a. (Bounded a, Show a) => Proxy a -> Position ->  Integer -> String
+  greatherThanMaxBound _ pos actual = "Expected: lesser than " ++ show (maxBound :: a) ++ " got: " ++ show actual ++ " at: " ++ show pos
 
   addLabel :: String -> String -> String
   addLabel label err = "Expected: " ++ label ++ ", but got: " ++ err

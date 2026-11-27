@@ -65,12 +65,13 @@ parseBounded
       Show a
   ) => ParserT s e m a
 parseBounded = do
+  p <- getPosition
   n <- integer
   let max' = toInteger (maxBound :: a)
       min' = toInteger (minBound :: a)
   case (n > max', n < min') of
-    (True, _) -> throwError $ greatherThanMaxBound (Proxy @a) n
-    (_, True) -> throwError $ lesserThanMinbound (Proxy @a) n
+    (True, _) -> throwError $ greatherThanMaxBound (Proxy @a) p n
+    (_, True) -> throwError $ lesserThanMinbound (Proxy @a) p n
     _         -> pure (fromInteger n)
 
 u8

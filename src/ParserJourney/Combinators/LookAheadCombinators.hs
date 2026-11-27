@@ -3,8 +3,10 @@
 module ParserJourney.Combinators.LookAheadCombinators where
 
 import           ParserJourney.Parsable    (Parsable)
-import           ParserJourney.Parser      (ParserT (..), runParser)
+import           ParserJourney.Parser      (ParserT (..), getPosition,
+                                            runParser)
 import           ParserJourney.ParserError (ParserError (unexpectedMatch))
+import           ParserJourney.ParserInput (ParserState (pos))
 
 notFollowedBy
   :: (Parsable s,
@@ -18,4 +20,4 @@ notFollowedBy p = ParserT $ \s -> do
                      res <- runParser p s
                      case res of
                           Left  _      -> pure $ Right ((), s)
-                          Right (x, _) -> pure $ Left $ unexpectedMatch (show x)
+                          Right (x, _) -> pure $ Left $ unexpectedMatch (pos s) (show x)

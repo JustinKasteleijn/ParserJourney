@@ -23,12 +23,12 @@ testCasesi8 :: [TestCase String Int8]
 testCasesi8 = [
     TestCase {
         testInput   = "128",
-        expected    = Left $ greatherThanMaxBound (Proxy @Int8) 128,
+        expected    = Left $ greatherThanMaxBound (Proxy @Int8) (Position 1 1) 128,
         description = "Test whether i8 correctly rejects 256"
       },
     TestCase {
         testInput   = "-129",
-        expected    = Left $ lesserThanMinbound (Proxy @Int8) (-129),
+        expected    = Left $ lesserThanMinbound (Proxy @Int8) (Position 1 1) (-129),
         description = "Test whether i8 fails rejects -129"
       },
     TestCase {
@@ -47,12 +47,12 @@ testCasesi16 :: [TestCase String Int16]
 testCasesi16 = [
     TestCase {
         testInput   = "32768",
-        expected    = Left $ greatherThanMaxBound (Proxy @Int16) 32768,
+        expected    = Left $ greatherThanMaxBound (Proxy @Int16) (Position 1 1) 32768,
         description = "Test whether i16 correctly rejects 32768"
       },
     TestCase {
         testInput   = "-32769",
-        expected    = Left $ lesserThanMinbound (Proxy @Int16) (-32769),
+        expected    = Left $ lesserThanMinbound (Proxy @Int16) (Position 1 1) (-32769),
         description = "Test whether i16 correctly rejects -32769"
       },
     TestCase {
@@ -71,12 +71,12 @@ testCasesi32 :: [TestCase String Int32]
 testCasesi32 = [
     TestCase {
         testInput   = "2147483648",
-        expected    = Left $ greatherThanMaxBound (Proxy @Int32) 2147483648,
+        expected    = Left $ greatherThanMaxBound (Proxy @Int32) (Position 1 1) 2147483648,
         description = "Test whether i32 correctly rejects 2147483648"
       },
     TestCase {
         testInput   = "-2147483649",
-        expected    = Left $ lesserThanMinbound (Proxy @Int32) (-2147483649),
+        expected    = Left $ lesserThanMinbound (Proxy @Int32) (Position 1 1) (-2147483649),
         description = "Test whether i32 correctly rejects -2147483649"
       },
     TestCase {
@@ -95,12 +95,12 @@ testCasesi64 :: [TestCase String Int64]
 testCasesi64 = [
     TestCase {
         testInput   = "9223372036854775808",
-        expected    = Left $ greatherThanMaxBound (Proxy @Int64) 9223372036854775808,
+        expected    = Left $ greatherThanMaxBound (Proxy @Int64) (Position 1 1) 9223372036854775808,
         description = "Test whether i64 correctly rejects 9223372036854775808"
       },
     TestCase {
         testInput   = "-9223372036854775809",
-        expected    = Left $ lesserThanMinbound (Proxy @Int64) (-9223372036854775809),
+        expected    = Left $ lesserThanMinbound (Proxy @Int64) (Position 1 1) (-9223372036854775809),
         description = "Test whether i64 correctly rejects -9223372036854775809"
       },
     TestCase {

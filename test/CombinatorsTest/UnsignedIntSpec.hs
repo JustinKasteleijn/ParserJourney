@@ -22,12 +22,12 @@ testCasesu8 :: [TestCase String Word8]
 testCasesu8 = [
     TestCase {
         testInput   = "256",
-        expected    = Left $ greatherThanMaxBound (Proxy @Word8) 256,
+        expected    = Left $ greatherThanMaxBound (Proxy @Word8) (Position 1 1) 256,
         description = "Test whether u8 correctly rejects 256"
       },
     TestCase {
         testInput   = "-1",
-        expected    = Left $ lesserThanMinbound (Proxy @Word8) (-1),
+        expected    = Left $ lesserThanMinbound (Proxy @Word8) (Position 1 1) (-1),
         description = "Test whether u8 fails on negative"
       },
     TestCase {
@@ -51,12 +51,12 @@ testCasesu16 :: [TestCase String Word16]
 testCasesu16 = [
     TestCase {
         testInput   = "65536",
-        expected    = Left $ greatherThanMaxBound (Proxy @Word16) 65536,
+        expected    = Left $ greatherThanMaxBound (Proxy @Word16) (Position 1 1) 65536,
         description = "Test whether u16 correctly rejects 65536"
       },
     TestCase {
         testInput   = "-1",
-        expected    = Left $ lesserThanMinbound (Proxy @Word16) (-1),
+        expected    = Left $ lesserThanMinbound (Proxy @Word16) (Position 1 1) (-1),
         description = "Test whether u16 fails on negative"
       },
     TestCase {
@@ -80,12 +80,12 @@ testCasesu32 :: [TestCase String Word32]
 testCasesu32 = [
     TestCase {
         testInput   = "4294967296",
-        expected    = Left $ greatherThanMaxBound (Proxy @Word32) 4294967296,
+        expected    = Left $ greatherThanMaxBound (Proxy @Word32) (Position 1 1) 4294967296,
         description = "Test whether u32 correctly rejects 4294967296"
       },
     TestCase {
         testInput   = "-1",
-        expected    = Left $ lesserThanMinbound (Proxy @Word32) (-1),
+        expected    = Left $ lesserThanMinbound (Proxy @Word32) (Position 1 1) (-1),
         description = "Test whether u32 fails on negative"
       },
     TestCase {
@@ -109,12 +109,12 @@ testCasesu64 :: [TestCase String Word64]
 testCasesu64 = [
     TestCase {
         testInput   = "18446744073709551616",
-        expected    = Left $ greatherThanMaxBound (Proxy @Word64) 18446744073709551616,
+        expected    = Left $ greatherThanMaxBound (Proxy @Word64) (Position 1 1) 18446744073709551616,
         description = "Test whether u64 correctly rejects 4294967296"
       },
     TestCase {
         testInput   = "-1",
-        expected    = Left $ lesserThanMinbound (Proxy @Word64) (-1),
+        expected    = Left $ lesserThanMinbound (Proxy @Word64) (Position 1 1) (-1),
         description = "Test whether u64 fails on negative"
       },
     TestCase {

@@ -3,8 +3,7 @@ module CombinatorsTest.NotFollowedBySpec (spec) where
 import           Generic
 import           ParserJourney.Combinators
 import           ParserJourney.ParserError
-import           ParserJourney.ParserInput                  (ParserState (..),
-                                                             Position (..))
+import           ParserJourney.ParserInput (ParserState (..), Position (..))
 import           Test.Hspec
 
 spec :: Spec
@@ -16,7 +15,7 @@ testCasesChar :: [TestCase String ()]
 testCasesChar = [
     TestCase {
         testInput   = "hello",
-        expected    = Left $ unexpectedMatch "'h'",
+        expected    = Left $ unexpectedMatch (Position 1 1) "'h'",
         description = "Test whether notFollowedBy fails when followed by the parser for single character"
       },
     TestCase {
