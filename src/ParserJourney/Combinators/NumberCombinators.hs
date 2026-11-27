@@ -2,21 +2,39 @@
 {-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE TypeApplications    #-}
 
-module ParserJourney.Combinators.NumberCombinators where
+module ParserJourney.Combinators.NumberCombinators (
+    integer,
+    u8,
+    u16,
+    u32,
+    u64,
+    i8,
+    i16,
+    i32,
+    i64,
+    parseBounded,
+    decimal,
+    nat
+) where
 
-import           Control.Applicative                       ((<|>))
-import           Data.Data                                 (Proxy (Proxy))
-import           Data.Int                                  (Int16, Int32, Int64,
-                                                            Int8)
-import           Data.List                                 (foldl')
-import           Data.Word                                 (Word16, Word32,
-                                                            Word64, Word8)
-import           ParserJourney.Combinators.CharCombinators (digit1, minus)
-import           ParserJourney.Parsable                    (Parsable (..))
-import           ParserJourney.Parser                      (ParserT, throwError)
-import           ParserJourney.ParserError                 (ParserError (greatherThanMaxBound, lesserThanMinbound))
-import           ParserJourney.ParserInput                 (Positioned)
-import           ParserJourney.TypeClasses.ToDigit         (ToDigit (toDigit))
+import           Control.Applicative                          ((<|>))
+import           Data.Data                                    (Proxy (Proxy))
+import           Data.Int                                     (Int16, Int32,
+                                                               Int64, Int8)
+import           Data.List                                    (foldl')
+import           Data.Word                                    (Word16, Word32,
+                                                               Word64, Word8)
+import           ParserJourney.Combinators.BasicCombinators   (optional,
+                                                               satisfy, (<?>))
+import           ParserJourney.Combinators.CharCombinators    (digit0, digit1,
+                                                               minus)
+import           ParserJourney.Parsable                       (Parsable (..))
+import           ParserJourney.Parser                         (ParserT,
+                                                               throwError)
+import           ParserJourney.ParserError                    (ParserError (greatherThanMaxBound, lesserThanMinbound, unexpectedInput))
+import           ParserJourney.ParserInput                    (Positioned)
+import           ParserJourney.TypeClasses.IsDecimalSeparator (IsDecimalSeparator (isDecimalSeparator))
+import           ParserJourney.TypeClasses.ToDigit            (ToDigit (toDigit))
 
 integer
   :: forall s e m.
@@ -29,12 +47,8 @@ integer
       ToDigit (Elem s)
   ) => ParserT s e m Integer
 integer = do
-  f <- negate <$ minus <|> pure id
-  f <$> foldDigits
- where
-   foldDigits :: ParserT s e m Integer
-   foldDigits
-     = foldl' (\ n d -> n * 10 + fromIntegral (toDigit d)) 0 <$> digit1
+  sign <- negate <$ minus <|> pure id
+  sign <$> _foldDigitsParser
 
 parseBounded
   :: forall s e m a.
@@ -153,3 +167,54 @@ i64
       ToDigit (Elem s)
   ) => ParserT s e m Int64
 i64 = parseBounded
+
+nat
+  :: (Parsable s,
+      ParserError e,
+      Monoid e,
+      Monad m,
+      Positioned (Elem s),
+      Show (Elem s),
+      ToDigit (Elem s)
+  ) => ParserT s e m Integer
+nat = do
+  i <- integer
+  if i < 0
+     then throwError (unexpectedInput (show i)) <?> "nat"
+     else pure i
+
+decimal
+  :: (Parsable s,
+      ParserError e,
+      Monoid e,
+      Monad m,
+      Positioned (Elem s),
+      Show (Elem s),
+      ToDigit (Elem s),
+      IsDecimalSeparator (Elem s)
+  ) => ParserT s e m Double
+decimal = (do
+  sign    <- negate <$ minus <|> pure id
+  whole   <- nat
+  _       <- satisfy isDecimalSeparator
+  mDigits <- optional digit0
+  let fraction = case mDigits of
+         Just digits -> fromIntegral (_foldDigits digits) / (10 ^ length digits)
+         Nothing     -> 0
+      value    = fromIntegral whole + fraction
+  pure (sign value)) <?> "decimal"
+
+_foldDigits :: ToDigit a => [a] -> Integer
+_foldDigits = foldl' (\n d -> n * 10 + fromIntegral (toDigit d)) 0
+
+_foldDigitsParser
+  :: (Parsable s,
+      ParserError e,
+      Monoid e,
+      Monad m,
+      Positioned (Elem s),
+      Show (Elem s),
+      ToDigit (Elem s)
+  ) => ParserT s e m Integer
+_foldDigitsParser
+  = _foldDigits <$> digit1

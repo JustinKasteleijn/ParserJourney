@@ -2,11 +2,12 @@
 
 module Main where
 
-import           Control.Applicative
+import           Control.Applicative       hiding (some)
 import           Control.DeepSeq           (NFData (rnf), force)
 import           Control.Exception         (evaluate)
 import           Criterion.Main
 import           Data.Functor.Identity     (runIdentity)
+import           Data.List                 (intercalate)
 import           ParserJourney.Combinators
 import           ParserJourney.Parser
 import           ParserJourney.ParserInput
@@ -16,13 +17,12 @@ main :: IO ()
 main = do
   input' <- evaluate (force inputt)
   defaultMain
-    [ bench "my parser" $
+    [ bench "Array example of 100.000 elements" $
         nf parseExample input'
     ]
 
 inputt :: String
-inputt = concat (replicate 10000 "1,2,3,4,5,6,7,8,9")
-
+inputt = "[" ++ intercalate "," (replicate 10000 "1.1,2.2,3.31482434241") ++ "]"
 
 instance NFData s => NFData (ParserState s) where
   rnf (ParserState inp position) =
@@ -32,8 +32,8 @@ instance NFData Position where
   rnf (Position line column) =
     rnf line `seq` rnf column
 
-parseExample :: String -> ([Integer], ParserState String)
+parseExample :: String -> ([Double], ParserState String)
 parseExample inp =
-  case runIdentity (parse (lines integer) inp) of
+  case runIdentity (parse (bracket (decimal `sepBy1` char ',')) inp) of
     Left err          -> error err
     Right (r', state) -> (r', state)

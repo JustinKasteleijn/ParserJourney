@@ -5,7 +5,8 @@ module ParserJourney.Combinators (
     module ParserJourney.Combinators.SeparationCombinators,
     module ParserJourney.Combinators.LookAheadCombinators,
     module ParserJourney.Combinators.NumberCombinators,
-    module ParserJourney.Combinators.RepetitionCombinators
+    module ParserJourney.Combinators.RepetitionCombinators,
+    module ParserJourney.Combinators.StringConvenienceCombinators
 ) where
 
 import           ParserJourney.Combinators.BasicCombinators
@@ -15,3 +16,4 @@ import           ParserJourney.Combinators.NumberCombinators
 import           ParserJourney.Combinators.RepetitionCombinators
 import           ParserJourney.Combinators.SeparationCombinators
 import           ParserJourney.Combinators.SequenceCombinators
+import           ParserJourney.Combinators.StringConvenienceCombinators

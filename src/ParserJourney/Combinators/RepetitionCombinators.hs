@@ -6,8 +6,6 @@ import           ParserJourney.Parsable    (Parsable)
 import           ParserJourney.Parser      (ParserT)
 import           ParserJourney.ParserError (ParserError)
 
-
-
 many
   :: (Parsable s,
       ParserError e,

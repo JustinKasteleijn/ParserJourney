@@ -72,11 +72,13 @@ library
                       ParserJourney.Combinators.LookAheadCombinators,
                       ParserJourney.Combinators.NumberCombinators,
                       ParserJourney.Combinators.RepetitionCombinators,
+                      ParserJourney.Combinators.StringConvenienceCombinators,
 
                       ParserJourney.TypeClasses.IsDigit,
                       ParserJourney.TypeClasses.ToDigit,
                       ParserJourney.TypeClasses.IsAlpha,
-                      ParserJourney.TypeClasses.IsSpace
+                      ParserJourney.TypeClasses.IsSpace,
+                      ParserJourney.TypeClasses.IsDecimalSeparator
 
     -- Modules included in this library but not exported.
     -- other-modules:
