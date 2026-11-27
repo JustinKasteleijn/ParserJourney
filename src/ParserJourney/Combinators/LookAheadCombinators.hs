@@ -3,8 +3,7 @@
 module ParserJourney.Combinators.LookAheadCombinators where
 
 import           ParserJourney.Parsable    (Parsable)
-import           ParserJourney.Parser      (ParserT (..), getPosition,
-                                            runParser)
+import           ParserJourney.Parser      (ParserT (..), runParser)
 import           ParserJourney.ParserError (ParserError (unexpectedMatch))
 import           ParserJourney.ParserInput (ParserState (pos))
 

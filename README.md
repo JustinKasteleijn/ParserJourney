@@ -2,6 +2,18 @@
 
 Just me developing my own parser library as preparation for Advent of Code :)
 
+# TODO 
+
+[ ] Currently the errors do not consider Spans (range of start of parser till error)  
+[ ] Currently the errors do not refer back to the original input in such a manner as: 
+
+```txt
+Error message: expected line: got col
+  |
+  | 2 code col with error
+  |        ^^^ 
+```
+
 # Combinators 
 
 # Parser Combinators Roadmap
